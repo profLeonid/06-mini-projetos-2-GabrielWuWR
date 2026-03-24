@@ -103,6 +103,7 @@ button:hover {
 
 .tabela-wrapper {
   overflow-x: auto;
+  height: 400px;
 }
 
 table {
