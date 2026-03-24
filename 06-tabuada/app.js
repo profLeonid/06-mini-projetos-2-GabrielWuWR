@@ -2,19 +2,33 @@
 
 function gerarListaNumeros(quantidade) {
     let listaNumero = [];
+    if (quantidade < 0) {
+        quantidade = quantidade * -1
 
-    for (let i = 1; i <= quantidade; i++) {
-        listaNumero.push(i);
-    };
-
+        for (let i = 1; i <= 10; i++) {
+            listaNumero.push(-i);
+        };
+    } else {
+        for (let i = 1; i <= 10; i++) {
+            listaNumero.push(i);
+        };
+    }
     return listaNumero;
 };
 
 function gerarTabuadaAdicao(quantidade) {
     let resposta = [];
 
-    for (let i = 1; i <= 10; i++) {
-        resposta.push(quantidade + i);
+    if (quantidade < 0) {
+        quantidade = quantidade * -1;
+
+        for (let i = 0; i < 10; i++) {
+            resposta.push(-quantidade + i);
+        };
+    } else {
+        for (let i = 0; i < 10; i++) {
+            resposta.push(quantidade + i);
+        };
     };
 
     return resposta;
@@ -23,9 +37,17 @@ function gerarTabuadaAdicao(quantidade) {
 function gerarTabuadaSubtracao(quantidade) {
     let resposta = [];
 
-    for (let i = 1; i <= 10; i++) {
-        resposta.push(quantidade - i);
-    }
+    if (quantidade < 0) {
+        quantidade = quantidade * -1;
+
+        for (let i = 1; i <= 10; i++) {
+            resposta.push(-quantidade - i);
+        }
+    } else {
+        for (let i = 1; i <= 10; i++) {
+            resposta.push(quantidade - i);
+        }
+    };
 
     return resposta;
 };
@@ -33,8 +55,16 @@ function gerarTabuadaSubtracao(quantidade) {
 function gerarTabuadaMultiplicacao(quantidade) {
     let respota = [];
 
-    for (let i = 1; i <= 10; i++) {
-        respota.push(quantidade * i);
+    if (quantidade < 0) {
+        quantidade = quantidade * -1;
+
+        for (let i = 1; i <= 10; i++) {
+            respota.push(-quantidade * i);
+        }
+    } else {
+        for (let i = 1; i <= 10; i++) {
+            respota.push(quantidade * i);
+        }
     }
 
     return respota;
@@ -43,9 +73,18 @@ function gerarTabuadaMultiplicacao(quantidade) {
 function gerarTabuadaDivisao(quantidade) {
     let resposta = [];
 
-    for (let i = 1; i <= 10; i++) {
-        let conta = quantidade / i;
-        resposta.push(conta.toFixed(2));
+    if (quantidade < 0) {
+        quantidade = quantidade * -1;
+
+        for (let i = 1; i <= 10; i++) {
+            let conta = -quantidade / i;
+            resposta.push(conta.toFixed(2));
+        }
+    } else {
+        for (let i = 1; i <= 10; i++) {
+            let conta = quantidade / i;
+            resposta.push(conta.toFixed(2));
+        }
     }
 
     return resposta;
@@ -85,7 +124,14 @@ function handleClick() {
 
     document.getElementById('tbody').replaceChildren();
 
-    for (let i = 0; i < quantidade; i++) {
-        criarLinha(listaNumeros[i], listaTabuadaAdicao[i], listaTabuadaSubtracao[i], listaTabuadaMultiplicacao[i], listaTabuadaDivisao[i]);
+    if (quantidade < 0) {
+        for (let i = -quantidade; i > -10; i--) {
+            let indice = i * -1;
+            criarLinha(listaNumeros[indice], listaTabuadaAdicao[indice], listaTabuadaSubtracao[indice], listaTabuadaMultiplicacao[indice], listaTabuadaDivisao[indice]);
+        }
+    } else {
+        for (let i = 0; i < 10; i++) {
+            criarLinha(listaNumeros[i], listaTabuadaAdicao[i], listaTabuadaSubtracao[i], listaTabuadaMultiplicacao[i], listaTabuadaDivisao[i]);
+        }
     }
 }
